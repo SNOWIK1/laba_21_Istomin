@@ -1,0 +1,135 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Media3D;
+using System.Windows;
+using System.Windows.Documents;
+
+namespace Laba_21
+{
+    public static class DBManager
+    {
+        public static List<Student> GetStudents()
+        {
+            const string con = @"Data Source=192.168.10.151\SQLEXPRESS;Initial Catalog=laba_21;User ID=wsr-3;Password=#774566cC2260$;Persist Security Info=True";
+
+            List<Student> list = new List<Student>();
+
+            using (SqlConnection connection = new SqlConnection(con))
+            {
+                connection.Open();
+
+                string commandStudents = "SELECT * FROM dbo.Студенты";
+                SqlDataAdapter StudentsAdapter = new SqlDataAdapter(commandStudents, con);
+                DataTable StudentsTable = new DataTable();
+
+                StudentsAdapter.Fill(StudentsTable);;
+
+                try
+                {
+                    foreach (DataRow row in StudentsTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["Код"].ToString());
+                        string fullname = row["ФИО"].ToString();
+                        string address = row["Адрес"].ToString();
+                        string phone = row["Телефон"].ToString();
+                        int groupID = Convert.ToInt32(row["ID_GR"].ToString());
+
+                        list.Add(new Student(id, fullname, address, phone, groupID));
+
+                    }
+
+                }
+                catch (Exception ex) 
+                { 
+                    MessageBox.Show(ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            return list;
+        }
+
+        public static List<Group> GetGroups()
+        {
+            const string con = @"Data Source=192.168.10.151\SQLEXPRESS;Initial Catalog=laba_21;User ID=wsr-3;Password=#774566cC2260$;Persist Security Info=True";
+
+            List<Group> list = new List<Group>();
+
+            using (SqlConnection connection = new SqlConnection(con))
+            {
+                connection.Open();
+
+                string commandGroup = "SELECT * FROM dbo.Группа";
+                SqlDataAdapter GroupAdapter = new SqlDataAdapter(commandGroup, con);
+                DataTable GroupTable = new DataTable();
+
+                GroupAdapter.Fill(GroupTable);
+                try
+                {
+                    foreach (DataRow row in GroupTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["Код"].ToString());
+                        string groupName = row["Название группы"].ToString();
+                        string headman = row["Фамилия старосты"].ToString();
+                        int quantity = Convert.ToInt32(row["Количество"].ToString());
+                        int facultyID = Convert.ToInt32(row["ФакультетID"].ToString());
+
+                        list.Add(new Group(id, groupName, headman, quantity, facultyID));
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            return list;
+
+        }
+
+        public static List<Faculty> GetFaculties()
+        {
+            const string con = @"Data Source=192.168.10.151\SQLEXPRESS;Initial Catalog=laba_21;User ID=wsr-3;Password=#774566cC2260$;Persist Security Info=True";
+
+            List<Faculty> list = new List<Faculty>();
+
+            using (SqlConnection connection = new SqlConnection(con))
+            {
+                string commandFaculty = "SELECT * FROM dbo.Факультет";
+                SqlDataAdapter FacultyAdapter = new SqlDataAdapter(commandFaculty, con);
+                DataTable FacultyTable = new DataTable();
+
+                FacultyAdapter.Fill(FacultyTable);
+
+                try
+                {
+                    foreach (DataRow row in FacultyTable.Rows)
+                    {
+                        int id = Convert.ToInt32(row["Код"].ToString());
+                        string facultyName = row["Факультет"].ToString();
+                        int course = Convert.ToInt32(row["Курс"].ToString());
+                        int quantity = Convert.ToInt32(row["Количество групп"].ToString());
+
+                        list.Add(new Faculty(id, facultyName, course, quantity));
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            return list;
+        }
+
+    }
+}
