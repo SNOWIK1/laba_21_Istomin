@@ -23,11 +23,18 @@ namespace Laba_21
         public MainWindow()
         {
             InitializeComponent();
-            MainPanel.Children.Add(UIManager.CreateGrids());
         }
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
+            Faculty[][] fSource = DBManager.GetFaculties();
+            Group[][] gSource = DBManager.GetGroups();
+            Student[][] sSource = DBManager.GetStudents();
+
+
+            FacultyTable.ItemsSource = fSource[0];
+            GroupTable.ItemsSource = gSource[0];
+            StudentTable.ItemsSource = sSource[0];
         }
 
     }

@@ -98,5 +98,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="btn_next.png" />
+    <Resource Include="btn_next_rev.png" />
+    <Resource Include="btn_next_stick.png" />
+    <Resource Include="btn_next_stick_rev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cross.png" />
+    <Resource Include="plus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

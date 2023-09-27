@@ -9,16 +9,19 @@ using System.Windows.Controls;
 using System.Windows.Media.Media3D;
 using System.Windows;
 using System.Windows.Documents;
+using System.Security.Cryptography;
 
 namespace Laba_21
 {
     public static class DBManager
     {
-        public static List<Student> GetStudents()
+        public static Student[][] GetStudents()
         {
             const string con = @"Data Source=192.168.10.151\SQLEXPRESS;Initial Catalog=laba_21;User ID=wsr-3;Password=#774566cC2260$;Persist Security Info=True";
 
             List<Student> list = new List<Student>();
+
+            Student[][] result = null;
 
             using (SqlConnection connection = new SqlConnection(con))
             {
@@ -44,6 +47,27 @@ namespace Laba_21
 
                     }
 
+                    int pages = (int)Math.Ceiling((double)list.Count / 3);
+
+                    List<Student> temp = new List<Student>();
+                    Student[][] arr = new Student[pages][]; // указывается длина двумерного массива, в зависимости от количества страниц (подмассивов)
+
+                    int lastIndex = 0;
+
+
+                    for (int i = 0; i < pages; i++)
+                    {
+                        for (int j = lastIndex; j < lastIndex + 3 && j < list.Count; j++) // если j меньше суммы последнего индекса и лимита и меньше длины списка-параметра
+                        {
+                            temp.Add(list[j]); // во временный список добавляется ограниченное число элементов
+                        }
+                        arr[i] = temp.ToArray(); // список конвертируется в массив, который добавляется в многомерный массив
+                        temp.Clear(); //
+                        lastIndex += 3; // индекс увеличивается на один лимит
+                    }
+
+
+                    result = arr;
                 }
                 catch (Exception ex) 
                 { 
@@ -51,14 +75,16 @@ namespace Laba_21
                 }
             }
 
-            return list;
+            return result;
         }
 
-        public static List<Group> GetGroups()
+        public static Group[][] GetGroups()
         {
             const string con = @"Data Source=192.168.10.151\SQLEXPRESS;Initial Catalog=laba_21;User ID=wsr-3;Password=#774566cC2260$;Persist Security Info=True";
 
             List<Group> list = new List<Group>();
+
+            Group[][] result = null;
 
             using (SqlConnection connection = new SqlConnection(con))
             {
@@ -83,6 +109,30 @@ namespace Laba_21
 
                     }
 
+
+                    int pages = (int)Math.Ceiling((double)list.Count / 3);
+
+                    List<Group> temp = new List<Group>();
+                    Group[][] arr = new Group[pages][]; // указывается длина двумерного массива, в зависимости от количества страниц (подмассивов)
+
+                    int lastIndex = 0;
+
+
+                    for (int i = 0; i < pages; i++)
+                    {
+                        for (int j = lastIndex; j < lastIndex + 3 && j < list.Count; j++) // если j меньше суммы последнего индекса и лимита и меньше длины списка-параметра
+                        {
+                            temp.Add(list[j]); // во временный список добавляется ограниченное число элементов
+                        }
+                        arr[i] = temp.ToArray(); // список конвертируется в массив, который добавляется в многомерный массив
+                        temp.Clear(); //
+                        lastIndex += 3; // индекс увеличивается на один лимит
+                    }
+
+
+                    result = arr;
+
+
                 }
                 catch (Exception ex)
                 {
@@ -90,15 +140,17 @@ namespace Laba_21
                 }
             }
 
-            return list;
+            return result;
 
         }
 
-        public static List<Faculty> GetFaculties()
+        public static Faculty[][] GetFaculties()
         {
             const string con = @"Data Source=192.168.10.151\SQLEXPRESS;Initial Catalog=laba_21;User ID=wsr-3;Password=#774566cC2260$;Persist Security Info=True";
 
             List<Faculty> list = new List<Faculty>();
+
+            Faculty[][] result = null;
 
             using (SqlConnection connection = new SqlConnection(con))
             {
@@ -121,6 +173,29 @@ namespace Laba_21
 
                     }
 
+                    int pages = (int)Math.Ceiling((double)list.Count / 3);
+
+                    List<Faculty> temp = new List<Faculty>();
+                    Faculty[][] arr = new Faculty[pages][]; // указывается длина двумерного массива, в зависимости от количества страниц (подмассивов)
+
+                    int lastIndex = 0;
+
+
+                    for (int i = 0; i < pages; i++)
+                    {
+                        for (int j = lastIndex; j < lastIndex + 3 && j < list.Count; j++) // если j меньше суммы последнего индекса и лимита и меньше длины списка-параметра
+                        {
+                            temp.Add(list[j]); // во временный список добавляется ограниченное число элементов
+                        }
+                        arr[i] = temp.ToArray(); // список конвертируется в массив, который добавляется в многомерный массив
+                        temp.Clear(); //
+                        lastIndex += 3; // индекс увеличивается на один лимит
+                    }
+
+
+                    result = arr;
+
+
                 }
                 catch (Exception ex)
                 {
@@ -128,8 +203,17 @@ namespace Laba_21
                 }
             }
 
-            return list;
+            return result;
         }
+
+
+        //public static [][] DoDivision(List<> list) // на вход подается список и лимит элементов в подмассиве
+        //{
+        //    int pages = (int)Math.Ceiling((double)list.Count / limit);
+
+        //    return arr;
+        //}
+
 
     }
 }

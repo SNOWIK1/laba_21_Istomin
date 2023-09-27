@@ -4,6 +4,69 @@
              xmlns:local="clr-namespace:Laba_21"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <Style x:Key="img_style" TargetType="Image">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+
+        <Style x:Key="grid_style" TargetType="DataGrid">
+            <Setter Property="Margin" Value="10 20 10 5"/>
+            <Setter Property="MaxHeight" Value="150"/>
+        </Style>
+
+        <ControlTemplate x:Key="table_toolbar" TargetType="ToolBar">
+            <ToolBar>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next_stick_rev.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next_rev.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Separator/>
+
+                <TextBox />
+                <Label/>
+
+                <Separator/>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next_stick.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Separator/>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="plus.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="cross.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Separator/>
+
+            </ToolBar>
+        </ControlTemplate>
+        
     </Application.Resources>
 </Application>

@@ -7,28 +7,25 @@
         mc:Ignorable="d"
         Title="Laba 21 by Istomin" Height="450" Width="800">
 
-    <Window.Resources>
-        <Style x:Key="grid_style" TargetType="DataGrid">
-            <Setter Property="Margin" Value="10 20 10 5"/>
-            <Setter Property="MaxHeight" Value="150"/>
-        </Style>
-    </Window.Resources>
     
     <Grid>
 
         <StackPanel Orientation="Vertical">
 
             <StackPanel>
-                <DataGrid Style="{StaticResource grid_style}" x:Name="faculties" Loaded="OnLoad"/>
+                <DataGrid x:Name="FacultyTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
+                <ToolBar Template="{StaticResource table_toolbar}"/>
             </StackPanel>
 
             <StackPanel>
-                <DataGrid Style="{StaticResource grid_style}" x:Name="groups" Loaded="OnLoad"/>
+                <DataGrid x:Name="GroupTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
+                <ToolBar Template="{StaticResource table_toolbar}"/>
             </StackPanel>
 
 
             <StackPanel>
-                <DataGrid Style="{StaticResource grid_style}" x:Name="students" Loaded="OnLoad"/>
+                <DataGrid x:Name="StudentTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
+                <ToolBar Template="{StaticResource table_toolbar}"/>
             </StackPanel>
 
         </StackPanel>
