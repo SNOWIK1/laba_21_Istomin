@@ -207,13 +207,5 @@ namespace Laba_21
         }
 
 
-        //public static [][] DoDivision(List<> list) // на вход подается список и лимит элементов в подмассиве
-        //{
-        //    int pages = (int)Math.Ceiling((double)list.Count / limit);
-
-        //    return arr;
-        //}
-
-
     }
 }

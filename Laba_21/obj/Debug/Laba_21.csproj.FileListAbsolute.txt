@@ -15,3 +15,4 @@ C:\Users\user.COMP-02.000\source\repos\Laba_21\Laba_21\obj\Debug\Laba_21.csproj.
 C:\Users\user.COMP-02.000\source\repos\Laba_21\Laba_21\obj\Debug\Laba_21.exe
 C:\Users\user.COMP-02.000\source\repos\Laba_21\Laba_21\obj\Debug\Laba_21.pdb
 C:\Users\user.COMP-02.000\source\repos\Laba_21\Laba_21\obj\Debug\App.baml
+C:\Users\user.COMP-02.000\source\repos\Laba_21\Laba_21\obj\Debug\GeneratedInternalTypeHelper.g.cs

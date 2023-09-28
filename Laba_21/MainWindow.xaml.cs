@@ -20,6 +20,12 @@ namespace Laba_21
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+        Faculty[][] fSource = DBManager.GetFaculties();
+        Group[][] gSource = DBManager.GetGroups();
+        Student[][] sSource = DBManager.GetStudents();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,15 +33,16 @@ namespace Laba_21
 
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            Faculty[][] fSource = DBManager.GetFaculties();
-            Group[][] gSource = DBManager.GetGroups();
-            Student[][] sSource = DBManager.GetStudents();
-
-
-            FacultyTable.ItemsSource = fSource[0];
-            GroupTable.ItemsSource = gSource[0];
-            StudentTable.ItemsSource = sSource[0];
+            FacultyTable.ItemsSource = fSource[FacultyTable.Page];
+            GroupTable.ItemsSource = gSource[GroupTable.Page];
+            StudentTable.ItemsSource = sSource[StudentTable.Page];
         }
 
+        private void NextPage(object sender, RoutedEventArgs e)
+        {
+            StudentTable.Page = StudentTable.Page + 1;
+
+            StudentTable.ItemsSource = sSource[StudentTable.Page];
+        }
     }
 }

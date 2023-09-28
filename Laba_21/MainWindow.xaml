@@ -7,25 +7,80 @@
         mc:Ignorable="d"
         Title="Laba 21 by Istomin" Height="450" Width="800">
 
-    
+    <Window.Resources>
+
+        <ControlTemplate x:Key="table_toolbar" TargetType="ToolBar">
+            <ToolBar>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next_stick_rev.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next_rev.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Separator/>
+
+                <TextBox Width="40" Height="20"/>
+                <Label Content="для "/>
+
+                <Separator/>
+
+                <Button Click="NextPage">
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="btn_next_stick.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Separator/>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="plus.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Button>
+                    <Button.Content>
+                        <Image Style="{StaticResource img_style}" Source="cross.png"/>
+                    </Button.Content>
+                </Button>
+
+                <Separator/>
+
+            </ToolBar>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
 
         <StackPanel Orientation="Vertical">
 
             <StackPanel>
-                <DataGrid x:Name="FacultyTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
-                <ToolBar Template="{StaticResource table_toolbar}"/>
+                <local:DataGridExtended x:Name="FacultyTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
+                <ToolBar x:Name="fToolbar" Template="{StaticResource table_toolbar}"/>
             </StackPanel>
 
             <StackPanel>
-                <DataGrid x:Name="GroupTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
-                <ToolBar Template="{StaticResource table_toolbar}"/>
+                <local:DataGridExtended x:Name="GroupTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
+                <ToolBar x:Name="gToolbar" Template="{StaticResource table_toolbar}"/>
             </StackPanel>
 
 
             <StackPanel>
-                <DataGrid x:Name="StudentTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
-                <ToolBar Template="{StaticResource table_toolbar}"/>
+                <local:DataGridExtended x:Name="StudentTable" Style="{StaticResource grid_style}" Loaded="OnLoad"/>
+                <ToolBar x:Name="sToolbar" Template="{StaticResource table_toolbar}"/>
             </StackPanel>
 
         </StackPanel>
